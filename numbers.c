@@ -1,14 +1,19 @@
 #include "main.h"
-/**
- * add_numbers - Add two numbers
- * @num1: First number
- * @num2: Second number
- * Return: The sum of num1 and num2
- */
-int add_numbers(int num1, int num2)
+int main(void)
 {
-	int sum;
-
-	sum = num1 + num2;
-	return (sum);
+	_putchar('H');
+	_putchar('e');
+	_putchar('l');
+	_putchar('l');
+	_putchar('o');
+	_putchar(',');
+	_putchar(' ');
+	_putchar('w');
+	_putchar('o');
+	_putchar('r');
+	_putchar('l');
+	_putchar('d');
+	_putchar('!');
+	_putchar('\n');
+	return 0;
 }
