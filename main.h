@@ -10,9 +10,19 @@
 #include <stdio.h>
 #define MAX_COMMAND_LENGTH 100
 #define MAX_ARGUMENTS 10
-void shell(void);
- void _putchar(char c);
-extern char **environ;
+
+/* Custom types or structures */
+typedef struct {
+	int fd;
+	/* Add any other members you need */
+} info_t;
+
+/* Function prototypes */
+int _putchar(char c);
+int is_shell_interactive(info_t *shell_info);
+int is_character_delimiter(char c, char *delimiters);
+int is_character_alphabetic(int c);
+int convert_string_to_int(char *str);
 int check_command(const char *command);
 void handle_exit();
 int exist(const char *pathname);

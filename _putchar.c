@@ -1,10 +1,9 @@
 #include "main.h"
 
-/**
- * _putchar - Writes a character to stdout
- * @c: The character to write
- */
-void _putchar(char c)
+int _putchar(char c)
 {
-	write(STDOUT_FILENO, &c, 1);
+	/* Implementation of _putchar function */
+	/* Replace with your own implementation */
+	return write(1, &c, 1);
 }
+

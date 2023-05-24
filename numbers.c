@@ -1,12 +1,8 @@
 #include "main.h"
 
-/**
- * main - Entry point of the program
- *
- * Return: Always 0 (Success)
- */
-int main(void)
-{
-	printf("Hello, world!\n");
-	return (0);
+void print_numbers(int number) {
+    int i = 0;
+    i += _putchar('-');
+    i += _putchar(number % 10 + '0');
+    printf("i: %d\n", i); 
 }
