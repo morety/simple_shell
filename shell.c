@@ -1,97 +1,70 @@
 #include "main.h"
 
-
 /**
- * is_shell_interactive - Check if the shell is running in interactive mode
- * @shell_info: Pointer to the shell information structure
- * is_character_delimiter - Check if a character is a delimiter
- * @c: The character to be checked
- * @delimiters: String containing the delimiters
- * is_character_alphabetic - Check if a character is alphabetic
- * @c: The character to be checked
- * convert_string_to_int - Convert a string to an integer
- * @str: The string to be converted
+ * interactive - checks if shell is in interactive mode
+ * @info: pointer to info_t struct
  *
- * Return: 1 if the shell is interactive, 0 otherwise
+ * Return: 1 if in interactive mode, 0 otherwise
  */
-int is_shell_interactive(info_t *shell_info)
+int interactive(info_t *info)
 {
-	return (isatty(STDIN_FILENO) && shell_info->fd <= 2);
+	return (isatty(STDIN_FILENO) && info->readfd <= 2);
 }
 
-int is_character_delimiter(char c, char *delimiters)
+/**
+ * is_delim - checks if character is a delimiter
+ * @c: character to check
+ * @delim: delimiter string
+ *
+ * Return: 1 if character is a delimiter, 0 otherwise
+ */
+int is_delim(char c, char *delim)
 {
-	while (*delimiters)
+	while (*delim)
 	{
-		if (*delimiters++ == c)
+		if (*delim++ == c)
 			return (1);
 	}
 	return (0);
 }
 
-int is_character_alphabetic(int c)
+/**
+ * _isalpha - checks for alphabetic character
+ * @c: character to check
+ *
+ * Return: 1 if character is alphabetic, 0 otherwise
+ */
+int _isalpha(int c)
 {
 	return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'));
 }
 
-int convert_string_to_int(char *str)
+/**
+ * _atoi - converts a string to an integer
+ * @s: string to be converted
+ *
+ * Return: converted integer if successful, 0 if no numbers in string
+ */
+int _atoi(char *s)
 {
-	int i, sign = 1, flag = 0, output;
+	int sign = 1;
 	unsigned int result = 0;
+	int flag = 0;
 
-	for (i = 0; str[i] != '\0' && flag != 2; i++)
+	for (; *s != '\0' && flag != 2; s++)
 	{
-		if (str[i] == '-')
+		if (*s == '-')
 			sign *= -1;
-
-		if (str[i] >= '0' && str[i] <= '9')
+		else if (*s >= '0' && *s <= '9')
 		{
 			flag = 1;
 			result *= 10;
-			result += (str[i] - '0');
+			result += (*s - '0');
 		}
 		else if (flag == 1)
 			flag = 2;
 	}
 
-	if (sign == -1)
-		output = -result;
-	else
-		output = result;
-
-	return (output);
+	return (sign == -1 ? -result : result);
 }
 
-int main(void)
-{
-	/* Example usage of the functions */
-	info_t shell_info;
-	int isShellInteractive;
-	char delimiters[] = ",;:";
-	char character;
-	int isDelimiter;
-	int character2;
-	int isCharAlphabetic;
-	char number[] = "12345";
-	int convertedNumber;
-
-	shell_info.fd = 0;
-
-	isShellInteractive = is_shell_interactive(&shell_info);
-	character = ';';
-	isDelimiter = is_character_delimiter(character, delimiters);
-	character2 = 'a';
-	isCharAlphabetic = is_character_alphabetic(character2);
-	convertedNumber = convert_string_to_int(number);
-
-	_putchar('0' + isShellInteractive);
-	_putchar('\n');
-	_putchar('0' + isDelimiter);
-	_putchar('\n');
-	_putchar('0' + isCharAlphabetic);
-	_putchar('\n');
-	_putchar('0' + (convertedNumber == 0));
-	_putchar('\n');
-
-	return (0);
-}
