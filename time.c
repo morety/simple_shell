@@ -10,7 +10,7 @@
 int exist(const char *pathname)
 {
     if (access(pathname, F_OK) == 0)
-        return 1;
+        return (1);
     else
-        return 0;
+        return (0);
 }
