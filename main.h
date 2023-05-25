@@ -10,6 +10,7 @@
 #include <stdio.h>
 #define MAX_COMMAND_LENGTH 100
 #define MAX_ARGUMENTS 10
+int _printp(const char *prompt, unsigned int size);
 int print_numbers(int n);
 /* Function prototypes */
 int _putchar(char c);
