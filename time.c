@@ -1,16 +1,22 @@
 
 #include "main.h"
-
-
 /**
  * exist - Verify if a file exists
- * @pathname: Path to the file
- * Return: 1 if the file exists, 0 otherwise
+ * @pathname: path to the file
+ *
+ * Return: 0 if the file exists, or -1 if not
  */
-int exist(const char *pathname)
+int exist(char *pathname)
 {
-    if (access(pathname, F_OK) == 0)
-        return (1);
-    else
-        return (0);
+	int fd = open(pathname, O_RDONLY);
+
+	if (fd != -1)
+	{
+		close(fd);
+		return (0);
+	}
+	else
+	{
+		return (-1);
+	}
 }
