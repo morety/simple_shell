@@ -10,11 +10,10 @@ int _strlen(const char *string)
 	int length = 0;
 
 	if (string == NULL)
-		return 0;
+		return (0);
 
-	for (; string[length] != '\0'; length++)
-		;
+	for (; string[length] != '\0'; length++);
 
-	return length;
+	return (length);
 }
 
