@@ -1,32 +1,56 @@
 #include "main.h"
-/**
- * _strcmp - Compares two strings
- * @str1: String to be compared
- * @str2: String to be compared
- *
- * Return: 0 if the strings are the same, > 0 if str1 is greater, < 0 if str2 is greater
- */
-int _strcmp(char *str1, char *str2)
+
+char *_strcpy(char *dest, const char *src)
 {
-	int a = 0;
+    int i = 0;
 
-	while (str1[a] != '\0')
-	{
-		if (str1[a] != str2[a])
-		{
-			return (str1[a] - str2[a]);
-		}
-		a++;
-	}
+    while (src[i])
+    {
+        dest[i] = src[i];
+        i++;
+    }
+    dest[i] = '\0';
+    return (dest);
+}
 
-	while (str2[a] != '\0')
-	{
-		if (str1[a] != str2[a])
-		{
-			return (str1[a] - str2[a]);
-		}
-		a++;
-	}
+char *_strdup(const char *str)
+{
+    size_t length;
+    char *ret;
 
-	return (0);
+    if (str == NULL)
+        return (NULL);
+
+    length = strlen(str);
+    ret = malloc(sizeof(char) * (length + 1));
+    if (ret == NULL)
+        return (NULL);
+
+    return strcpy(ret, str);
+}
+
+void _puts(const char *str)
+{
+    int i = 0;
+
+    while (str[i] != '\0')
+    {
+        _putchar(str[i]);
+        i++;
+    }
+}
+
+int _putchar(char c)
+{
+    static int i;
+    static char buf[WRITE_BUF_SIZE];
+
+    if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
+    {
+        write(1, buf, i);
+        i = 0;
+    }
+    if (c != BUF_FLUSH)
+        buf[i++] = c;
+    return (1);
 }
